@@ -1,0 +1,24 @@
+name: LiftKit
+options:
+  minimumXcodeGenVersion: 2.38.0
+deploymentTarget:
+  iOS: "17.0"
+settings:
+  base:
+    PRODUCT_NAME: LiftKit
+    SWIFT_VERSION: 5.0
+targets:
+  LiftKit:
+    type: application
+    platform: iOS
+    sources:
+      - path: LiftKit
+    info:
+      path: LiftKit/Resources/Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.mresnick67.LiftKit
+        INFOPLIST_FILE: LiftKit/Resources/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+    scheme:
+      testTargets: []

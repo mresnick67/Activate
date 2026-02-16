@@ -1,0 +1,430 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3AF69C722BBED3CD35070341 /* HistoryListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ECD720756C8A12D9FEEF2A /* HistoryListView.swift */; };
+		5FBF6497BD041C8E5A3A0BDC /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 720367366B72942A20B0BE7A /* HomeView.swift */; };
+		68CBF29B55A9BC9B47E6A4AB /* ExerciseLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5055C8851C2FE72E8A26668 /* ExerciseLibraryView.swift */; };
+		9D4832A1E232BA4E531A04D1 /* LiftKitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AEA0EEEF1FE4C142B524A26 /* LiftKitApp.swift */; };
+		A714959B75338072F0555353 /* WorkoutTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BCB92139EE6B89E12A5BF5 /* WorkoutTemplate.swift */; };
+		C1027306590B4DD3230045A9 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2C577679200E06A8888F0 /* Exercise.swift */; };
+		C1DD233684E3502E39452DF7 /* SettingsPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961827E96EA06C78177CC48 /* SettingsPlaceholderView.swift */; };
+		D9C502693B5D3D8010903BEC /* WorkoutSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324951462E242669F6C8D797 /* WorkoutSet.swift */; };
+		DAA7C7C1B8E086EDE0F44467 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 426DA539D4447E83FF6C738C /* ContentView.swift */; };
+		E0C9FC7511DC8EFB88C7ECF5 /* Workout.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D6510CCCC8A47189020348 /* Workout.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2438FD301D9F677C633278FA /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		2CF2C577679200E06A8888F0 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
+		324951462E242669F6C8D797 /* WorkoutSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSet.swift; sourceTree = "<group>"; };
+		38B21FFE3C7D29E8DE0ADB6F /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		3A60C4A56AA1DFC66FE6CE15 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		426DA539D4447E83FF6C738C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		4961827E96EA06C78177CC48 /* SettingsPlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPlaceholderView.swift; sourceTree = "<group>"; };
+		5AEA0EEEF1FE4C142B524A26 /* LiftKitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiftKitApp.swift; sourceTree = "<group>"; };
+		6DB142F6640E9D1EB5BCEBFB /* LiftKit.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = LiftKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		720367366B72942A20B0BE7A /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		790DC4CEB445CFDC6150E829 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		84ECD720756C8A12D9FEEF2A /* HistoryListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryListView.swift; sourceTree = "<group>"; };
+		99EE295EC03BD91E0A3B5006 /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		C5055C8851C2FE72E8A26668 /* ExerciseLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseLibraryView.swift; sourceTree = "<group>"; };
+		D89AB0EA552511224A67AC4E /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
+		E1BCB92139EE6B89E12A5BF5 /* WorkoutTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTemplate.swift; sourceTree = "<group>"; };
+		F4D6510CCCC8A47189020348 /* Workout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Workout.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		19A08E142201E5320272FA4A /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				720367366B72942A20B0BE7A /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		207E88C50B5496EF4DB55727 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				4961827E96EA06C78177CC48 /* SettingsPlaceholderView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		3449CF72644493033FDBFEE9 /* Exercises */ = {
+			isa = PBXGroup;
+			children = (
+				C5055C8851C2FE72E8A26668 /* ExerciseLibraryView.swift */,
+			);
+			path = Exercises;
+			sourceTree = "<group>";
+		};
+		36BB19423D1307D1749205C3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				99EE295EC03BD91E0A3B5006 /* .gitkeep */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		42A3C218EBE8BE0D1F0D0807 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				790DC4CEB445CFDC6150E829 /* .gitkeep */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		463853CA88D911EFD3509667 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				426DA539D4447E83FF6C738C /* ContentView.swift */,
+				5AEA0EEEF1FE4C142B524A26 /* LiftKitApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		4772C2BCB4EF8565968F6BA5 /* LiftKit */ = {
+			isa = PBXGroup;
+			children = (
+				463853CA88D911EFD3509667 /* App */,
+				746A019C0C1345495BE02DA6 /* Models */,
+				5F6A6DA0A5D65D392F338A23 /* Repositories */,
+				86A1E05C7B90C34790896D25 /* Resources */,
+				42A3C218EBE8BE0D1F0D0807 /* Services */,
+				DD9E679B80B0F5B5E6677479 /* Utilities */,
+				36BB19423D1307D1749205C3 /* ViewModels */,
+				9078303E4AAD6302952F37F8 /* Views */,
+			);
+			path = LiftKit;
+			sourceTree = "<group>";
+		};
+		5D63996023FDA5E204712683 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				84ECD720756C8A12D9FEEF2A /* HistoryListView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		5F6A6DA0A5D65D392F338A23 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				2438FD301D9F677C633278FA /* .gitkeep */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		746A019C0C1345495BE02DA6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				2CF2C577679200E06A8888F0 /* Exercise.swift */,
+				F4D6510CCCC8A47189020348 /* Workout.swift */,
+				324951462E242669F6C8D797 /* WorkoutSet.swift */,
+				E1BCB92139EE6B89E12A5BF5 /* WorkoutTemplate.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		86A1E05C7B90C34790896D25 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3A60C4A56AA1DFC66FE6CE15 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		903761FC003EED245697E1E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6DB142F6640E9D1EB5BCEBFB /* LiftKit.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9078303E4AAD6302952F37F8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3449CF72644493033FDBFEE9 /* Exercises */,
+				5D63996023FDA5E204712683 /* History */,
+				19A08E142201E5320272FA4A /* Home */,
+				207E88C50B5496EF4DB55727 /* Settings */,
+				D0835768C943A861B5D23E59 /* Workout */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B3F42E4E51D73CFFE33575ED = {
+			isa = PBXGroup;
+			children = (
+				4772C2BCB4EF8565968F6BA5 /* LiftKit */,
+				903761FC003EED245697E1E1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D0835768C943A861B5D23E59 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				D89AB0EA552511224A67AC4E /* .gitkeep */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		DD9E679B80B0F5B5E6677479 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				38B21FFE3C7D29E8DE0ADB6F /* .gitkeep */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FB9C0BFB5B37834303E4AFFB /* LiftKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0F67DB4B9E206243D97D5A92 /* Build configuration list for PBXNativeTarget "LiftKit" */;
+			buildPhases = (
+				992B8C845EC1E9B0DEFDB26F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LiftKit;
+			packageProductDependencies = (
+			);
+			productName = LiftKit;
+			productReference = 6DB142F6640E9D1EB5BCEBFB /* LiftKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3AAF81A8AFFADE303A330D00 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = 272D5112C4B8FF811EEE371B /* Build configuration list for PBXProject "LiftKit" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = B3F42E4E51D73CFFE33575ED;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FB9C0BFB5B37834303E4AFFB /* LiftKit */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		992B8C845EC1E9B0DEFDB26F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DAA7C7C1B8E086EDE0F44467 /* ContentView.swift in Sources */,
+				C1027306590B4DD3230045A9 /* Exercise.swift in Sources */,
+				68CBF29B55A9BC9B47E6A4AB /* ExerciseLibraryView.swift in Sources */,
+				3AF69C722BBED3CD35070341 /* HistoryListView.swift in Sources */,
+				5FBF6497BD041C8E5A3A0BDC /* HomeView.swift in Sources */,
+				9D4832A1E232BA4E531A04D1 /* LiftKitApp.swift in Sources */,
+				C1DD233684E3502E39452DF7 /* SettingsPlaceholderView.swift in Sources */,
+				E0C9FC7511DC8EFB88C7ECF5 /* Workout.swift in Sources */,
+				D9C502693B5D3D8010903BEC /* WorkoutSet.swift in Sources */,
+				A714959B75338072F0555353 /* WorkoutTemplate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		3515C41EF5FEFA32F5FB700D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = LiftKit;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		9296C51637337B1336D3CDA9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = LiftKit;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		CCC157B12C4791169966ED43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LiftKit/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mresnick67.LiftKit;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EBFF369B9FD9BD53ED88706D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = LiftKit/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mresnick67.LiftKit;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0F67DB4B9E206243D97D5A92 /* Build configuration list for PBXNativeTarget "LiftKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CCC157B12C4791169966ED43 /* Debug */,
+				EBFF369B9FD9BD53ED88706D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		272D5112C4B8FF811EEE371B /* Build configuration list for PBXProject "LiftKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3515C41EF5FEFA32F5FB700D /* Debug */,
+				9296C51637337B1336D3CDA9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3AAF81A8AFFADE303A330D00 /* Project object */;
+}

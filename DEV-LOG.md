@@ -4,6 +4,33 @@ Keep entries factual and anchored to commits/files.
 
 ---
 
+## 2026-02-19 — Nightly Build Run (03:10 ET)
+
+**Phase:** BQ-008 Rest timer capsule
+
+**What changed**
+- Added rest timer state management in `LiftKit/ViewModels/WorkoutViewModel.swift`:
+  - auto-start on set completion from `toggleSetCompletion`,
+  - countdown task management,
+  - inline adjust controls support (`-15s / +15s`) and explicit skip.
+- Updated `LiftKit/Views/Workout/ActiveWorkoutView.swift` with an always-visible, non-modal rest capsule while active:
+  - countdown display,
+  - quick adjust buttons,
+  - Skip action.
+- Added cleanup behavior to stop timer when workout screen dismisses.
+
+**Queue update**
+- Marked **BQ-008** DONE in `BUILD-QUEUE.md`.
+- Promoted **BQ-009** as top NEXT ticket.
+
+**Verification**
+- Source-level validation complete (view model + workout screen wiring) ✅
+- Runtime `xcodebuild` verification still blocked on host Xcode selection (`CommandLineTools` active) ⚠️
+
+**Next up**
+- BQ-009 Finish workout + save flow
+- BQ-010 History list
+
 ## 2026-02-19 — Nightly Build Run (02:10 ET)
 
 **Phase:** BQ-007 Set logging UI

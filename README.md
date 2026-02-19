@@ -24,14 +24,18 @@ _Last updated: **2026-02-19**_
   - Set completion toggle with timestamp coherence
   - Inline Add Set + swipe-to-delete
   - Keyboard toolbar focus progression (`weight → reps → RPE → next set`)
+- Rest timer capsule is implemented:
+  - Auto-starts on set completion
+  - Non-modal countdown attached to workout screen
+  - Inline `-15s / +15s / Skip` controls
 
 ## What’s Next
 
 _Last updated: **2026-02-19**_
 
-- **BQ-008** Rest timer (auto-start on set completion; inline `-15s/+15s/Skip` controls; non-modal).
 - **BQ-009** Finish workout + save flow (facts-first summary; persist `completedAt` + duration).
-- **BQ-010** Replace History placeholder with real workout list + **BQ-011** workout detail.
+- **BQ-010** Replace History placeholder with real workout list.
+- **BQ-011** Workout detail (read-only breakdown per session).
 - Runtime build verification once full Xcode toolchain is active.
 
 (See: `BUILD-QUEUE.md` and `DEV-LOG.md`.)

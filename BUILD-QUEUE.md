@@ -1,6 +1,6 @@
 # Activate — Build Queue
 
-Last updated: **2026-02-19 02:10** (America/Toronto)
+Last updated: **2026-02-19 03:10** (America/Toronto)
 
 Status: **DONE / IN-PROGRESS / NEXT / BLOCKED / PARKED**
 
@@ -24,19 +24,14 @@ Evidence basis: current repo contents under `LiftKit/` + recent git history.
   - Added swipe-to-delete set rows and inline **Add Set** action.
   - Added keyboard toolbar flow (**Next/Done**) to move `weight → reps → RPE → next set`.
   - Added field-level numeric constraints + visible invalid-state border + "Last" ghost + **Repeat** action.
+- **DONE (BQ-008)** Rest timer capsule (non-modal, attached to set completion)
+  - Auto-starts when a set is marked complete in `WorkoutViewModel.toggleSetCompletion`.
+  - Added inline rest capsule in `ActiveWorkoutView` with visible countdown + `-15s / +15s / Skip` controls.
+  - Timer state is safely managed in view model (`restTimeRemainingSeconds`) and cleared on skip/dismiss.
 
 ---
 
-## Next (focus: logging ergonomics + trust)
-
-### **NEXT (BQ-008)** Rest timer capsule (non-modal, attached to set completion)
-**UX:** Auto-start on set completion; inline `-15s / +15s / Skip` controls; always visible on workout screen.
-
-**Tech notes**
-- MVP can keep timer state in-memory (view model) if persistence is unclear
-- If persisting: decide where rest defaults live (template vs exercise metadata)
-
----
+## Next (focus: workout completion + history trust)
 
 ### **NEXT (BQ-009)** Finish workout + save flow (facts first)
 **UX:** Summary must present verifiable facts (duration, sets completed, volume) before any AI interpretation.

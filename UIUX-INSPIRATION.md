@@ -4,9 +4,9 @@ Last updated: 2026-02-19
 Owner: UI/UX Inspiration Worker
 
 ## Current sprint focus
-- **Primary:** Task #7 Set logging UI (speed + low-error entry)
-- **Next:** Task #8 Rest timer (auto-trigger, low-friction control)
-- **Trust thread:** Task #9 Finish summary must present verifiable facts before AI interpretation
+- **Primary:** Task #9 Finish workout flow (facts-first trust summary)
+- **Next:** Task #10 History list information density + readability
+- **Trust thread:** Every insight must be visibly derived from logged workout facts
 
 ## External signal check (today)
 - Re-checked official Strong and Hevy docs/pages plus store listings.
@@ -24,8 +24,8 @@ Owner: UI/UX Inspiration Worker
 - Surface previous performance context in-row so users don’t recall from memory.
 
 **Why this matters now:**
-- `ActiveWorkoutView` currently renders placeholder set rows (`"—"`).
-- Task #7 is blocked on exactly this interaction model.
+- Set logging now exists, so this pattern becomes a polish benchmark for speed and error reduction.
+- The same inline philosophy should carry into finish/save and history surfaces.
 
 ---
 
@@ -72,15 +72,15 @@ Owner: UI/UX Inspiration Worker
 
 ## Implementation-ready actions (next 24h)
 
-1) **Ship `WorkoutSetRowView` for Task #7 in `ActiveWorkoutView`**
-   - Inline fields: `weight`, `reps`, `RPE`, plus completion checkbox.
-   - Numeric keyboard + focus progression (`weight -> reps -> RPE -> next set`).
-   - Add “last” ghost values (previous session for same exercise/set index) and one-tap “Repeat Last”.
+1) **Build Task #9 finish flow with facts-first summary**
+   - Add clear `Finish Workout` confirmation with an empty-workout warning.
+   - Summary card order: duration → completed sets → total volume → exercises logged.
+   - Keep language objective and data-derived (no generic motivational fluff).
 
-2) **Implement timer capsule for Task #8 (non-modal)**
-   - On set checkmark: auto-start per-exercise countdown.
-   - Inline controls: `-15s`, `+15s`, `Skip`.
-   - Persist default timer on exercise-level metadata so templates can reuse it later.
+2) **Replace History placeholder with factual list scaffolding (Task #10)**
+   - Completed workouts only by default, reverse chronological.
+   - Row information density: date/time, duration, sets, volume.
+   - Empty-state CTA should route back to Home “Start Workout”.
 
 ## Anti-pattern to avoid
 - **Do not hide AI logic behind confidence theater** (e.g., generic “Great progress!” with no derivation).

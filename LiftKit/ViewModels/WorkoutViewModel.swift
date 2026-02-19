@@ -2,12 +2,26 @@ import Foundation
 import Observation
 import SwiftData
 
+@MainActor
 @Observable
 final class WorkoutViewModel {
     private(set) var workout: Workout?
 
+    private var restTimerTask: Task<Void, Never>?
+    private(set) var restTimeRemainingSeconds: Int?
+    private(set) var restTimerDurationSeconds: Int = 90
+    private(set) var restTimerSourceSetID: UUID?
+
     var isStartingWorkout: Bool = false
     var startErrorMessage: String?
+
+    var isRestTimerActive: Bool {
+        restTimeRemainingSeconds != nil
+    }
+
+    deinit {
+        restTimerTask?.cancel()
+    }
 
     func startWorkoutIfNeeded(modelContext: ModelContext) {
         guard workout == nil else { return }
@@ -88,6 +102,12 @@ final class WorkoutViewModel {
         set.isCompleted = isCompleted
         set.completedAt = isCompleted ? Date() : nil
         persistChanges(modelContext: modelContext)
+
+        if isCompleted {
+            startRestTimer(sourceSetID: set.id)
+        } else if restTimerSourceSetID == set.id {
+            skipRestTimer()
+        }
     }
 
     func copyValues(from source: WorkoutSet, to target: WorkoutSet, modelContext: ModelContext) {
@@ -95,6 +115,51 @@ final class WorkoutViewModel {
         target.reps = source.reps
         target.rpe = source.rpe
         persistChanges(modelContext: modelContext)
+    }
+
+    func startRestTimer(durationSeconds: Int = 90, sourceSetID: UUID? = nil) {
+        let clampedDuration = max(5, durationSeconds)
+        restTimerDurationSeconds = clampedDuration
+        restTimeRemainingSeconds = clampedDuration
+        restTimerSourceSetID = sourceSetID
+
+        restTimerTask?.cancel()
+        restTimerTask = Task { [weak self] in
+            while !Task.isCancelled {
+                try? await Task.sleep(for: .seconds(1))
+                guard let self else { return }
+                guard let remaining = self.restTimeRemainingSeconds else { return }
+
+                let nextValue = remaining - 1
+                if nextValue <= 0 {
+                    self.restTimeRemainingSeconds = nil
+                    self.restTimerSourceSetID = nil
+                    self.restTimerTask = nil
+                    return
+                }
+
+                self.restTimeRemainingSeconds = nextValue
+            }
+        }
+    }
+
+    func adjustRestTimer(by deltaSeconds: Int) {
+        guard let remaining = restTimeRemainingSeconds else { return }
+
+        let updated = remaining + deltaSeconds
+        guard updated > 0 else {
+            skipRestTimer()
+            return
+        }
+
+        restTimeRemainingSeconds = updated
+    }
+
+    func skipRestTimer() {
+        restTimerTask?.cancel()
+        restTimerTask = nil
+        restTimeRemainingSeconds = nil
+        restTimerSourceSetID = nil
     }
 
     func persistChanges(modelContext: ModelContext) {

@@ -16,6 +16,12 @@ struct ActiveWorkoutView: View {
                     workoutHeader
                 }
 
+                if viewModel.isRestTimerActive {
+                    Section {
+                        restTimerCapsule
+                    }
+                }
+
                 let groups = viewModel.groupedSets()
                 if groups.isEmpty {
                     ContentUnavailableView(
@@ -120,6 +126,10 @@ struct ActiveWorkoutView: View {
             .onAppear {
                 viewModel.startWorkoutIfNeeded(modelContext: modelContext)
             }
+            .onDisappear {
+                focusedField = nil
+                viewModel.skipRestTimer()
+            }
         }
     }
 
@@ -145,6 +155,41 @@ struct ActiveWorkoutView: View {
                 Text("Starting workout…")
                     .foregroundStyle(.secondary)
             }
+        }
+    }
+
+    @ViewBuilder
+    private var restTimerCapsule: some View {
+        if let remaining = viewModel.restTimeRemainingSeconds {
+            HStack(spacing: 10) {
+                Label("Rest", systemImage: "timer")
+                    .font(.subheadline.weight(.semibold))
+
+                Text(formatElapsed(remaining))
+                    .font(.headline.monospacedDigit())
+
+                Spacer()
+
+                Button("-15s") {
+                    viewModel.adjustRestTimer(by: -15)
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+
+                Button("+15s") {
+                    viewModel.adjustRestTimer(by: 15)
+                }
+                .buttonStyle(.bordered)
+                .controlSize(.small)
+
+                Button("Skip") {
+                    viewModel.skipRestTimer()
+                }
+                .buttonStyle(.borderless)
+                .foregroundStyle(.secondary)
+                .font(.subheadline)
+            }
+            .padding(.vertical, 4)
         }
     }
 

@@ -25,48 +25,32 @@ Non-goals for MVP: backend sync, social, templates complexity, HealthKit writeba
 - Tab shell exists: Home / History / Exercises / Settings.
 - Models present: `Workout`, `WorkoutSet`, `Exercise`, `WorkoutTemplate`.
 - Active workout creates a `Workout` on appear.
-- Adding an exercise inserts 3 `WorkoutSet` rows, but set rows are placeholders (no inline entry yet).
+- Adding an exercise inserts 3 `WorkoutSet` rows with full inline logging.
+- Set logging is live (`weight/reps/RPE`, completion toggle, add/delete set, keyboard focus progression, repeat-last).
+- Rest timer capsule is live (auto-start on completion, `-15s/+15s/Skip`, non-modal).
 - Default exercises seeded from `DefaultExercises.json` (**91** exercises).
 
 ---
 
 ## Next implementation plan (ordered)
 
-### 1) BQ-007 — Set logging UI
-
-**Design goals**
-- Inline set row editing (no modal per set)
-- Low-error numeric entry (constraints at input)
-- One-thumb, fast progression through fields
-
-**Technical approach (SwiftUI + SwiftData)**
-- Create a `WorkoutSetRowView(set: WorkoutSet)` that edits:
-  - `weight: Double?` (decimal keypad)
-  - `reps: Int?` (number pad)
-  - `rpe: Double?` (decimal keypad; optional)
-  - `isCompleted` + `completedAt` coherence
-- Use `@Bindable var set: WorkoutSet` (SwiftData) or explicit bindings to avoid copy-on-write issues.
-- Use `FocusState` to manage field progression.
-- Keep formatting consistent (e.g., 0–2 decimals for weight, 0–1 for RPE) and never crash on nil.
-
-**UX quality/ergonomics action (required this sprint)**
-- Implement a "Repeat Last" affordance OR ghost previous values, as described in `UIUX-INSPIRATION.md`, to reduce typing.
-
-### 2) BQ-008 — Rest timer capsule
-
-- Timer should be visible within `ActiveWorkoutView` and start when a set is marked completed.
-- MVP persistence can be deferred; keep timer state in the workout view model.
-
-### 3) BQ-009 — Finish workout + summary
+### 1) BQ-009 — Finish workout + summary
 
 - Add explicit "Finish" action in `ActiveWorkoutView`.
 - Persist `completedAt` + `durationSeconds`.
 - Summary UI must show facts first (duration, completed sets, volume) before any interpretive copy.
+- Include an empty-workout guardrail (confirm if no completed sets).
 
-### 4) BQ-010/011 — History + detail
+### 2) BQ-010 — History list
 
-- Replace placeholder history view with a list from SwiftData.
-- Add drill-in to a read-only workout detail screen.
+- Replace placeholder history view with a real list from SwiftData.
+- Show factual row summaries (date, duration, set count, volume).
+- Handle empty-state and in-progress filtering intentionally.
+
+### 3) BQ-011 — Workout detail (read-only)
+
+- Drill-in from history rows to a read-only workout detail screen.
+- Preserve set/exercise ordering and show completion state clearly.
 
 ---
 

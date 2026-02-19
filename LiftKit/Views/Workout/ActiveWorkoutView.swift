@@ -7,6 +7,7 @@ struct ActiveWorkoutView: View {
 
     @State private var viewModel = WorkoutViewModel()
     @State private var isShowingExercisePicker = false
+    @FocusState private var focusedField: WorkoutSetInputField?
 
     var body: some View {
         NavigationStack {
@@ -25,16 +26,31 @@ struct ActiveWorkoutView: View {
                 } else {
                     ForEach(groups) { group in
                         Section {
-                            ForEach(group.sets) { set in
-                                HStack {
-                                    Text("Set \(set.setOrder + 1)")
-                                        .font(.subheadline)
-                                        .foregroundStyle(.secondary)
-                                    Spacer()
-                                    Text("—")
-                                        .foregroundStyle(.tertiary)
-                                }
+                            ForEach(Array(group.sets.enumerated()), id: \.element.id) { index, set in
+                                WorkoutSetRowView(
+                                    set: set,
+                                    previousSet: index > 0 ? group.sets[index - 1] : nil,
+                                    onToggleCompletion: { isCompleted in
+                                        viewModel.toggleSetCompletion(set, isCompleted: isCompleted, modelContext: modelContext)
+                                    },
+                                    onPersist: {
+                                        viewModel.persistChanges(modelContext: modelContext)
+                                    },
+                                    focusedField: $focusedField
+                                )
                             }
+                            .onDelete { offsets in
+                                viewModel.deleteSets(at: offsets, from: group, modelContext: modelContext)
+                            }
+
+                            Button {
+                                viewModel.addSet(to: group, modelContext: modelContext)
+                            } label: {
+                                Label("Add Set", systemImage: "plus.circle")
+                                    .font(.subheadline.weight(.medium))
+                            }
+                            .buttonStyle(.plain)
+                            .padding(.vertical, 4)
                         } header: {
                             HStack {
                                 Text(group.exercise.name)
@@ -64,6 +80,19 @@ struct ActiveWorkoutView: View {
                         isShowingExercisePicker = true
                     } label: {
                         Label("Add Exercise", systemImage: "plus")
+                    }
+                }
+
+                ToolbarItemGroup(placement: .keyboard) {
+                    Button("Next") {
+                        focusNextField()
+                    }
+                    .disabled(focusedField == nil)
+
+                    Spacer()
+
+                    Button("Done") {
+                        focusedField = nil
                     }
                 }
             }
@@ -116,6 +145,39 @@ struct ActiveWorkoutView: View {
                 Text("Starting workout…")
                     .foregroundStyle(.secondary)
             }
+        }
+    }
+
+    private func focusNextField() {
+        guard let focusedField else { return }
+
+        switch focusedField {
+        case .weight(let setID):
+            self.focusedField = .reps(setID)
+
+        case .reps(let setID):
+            self.focusedField = .rpe(setID)
+
+        case .rpe(let setID):
+            let orderedIDs = orderedSetIDs()
+            guard let currentIndex = orderedIDs.firstIndex(of: setID) else {
+                self.focusedField = nil
+                return
+            }
+
+            let nextIndex = currentIndex + 1
+            guard orderedIDs.indices.contains(nextIndex) else {
+                self.focusedField = nil
+                return
+            }
+
+            self.focusedField = .weight(orderedIDs[nextIndex])
+        }
+    }
+
+    private func orderedSetIDs() -> [UUID] {
+        viewModel.groupedSets().flatMap { group in
+            group.sets.map(\.id)
         }
     }
 

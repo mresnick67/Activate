@@ -1,29 +1,40 @@
-# Activate
+# LiftKit (working name: Activate)
 
-AI-powered iOS workout tracker focused on reliable logging, data portability, and practical coaching insights.
+Swift-native iOS workout tracker focused on reliable logging, data portability, and practical coaching insights.
 
 - Platform: iOS 17+
-- Stack: SwiftUI, SwiftData, HealthKit, OpenAI API (MVP)
+- Stack (current): SwiftUI, SwiftData
+- Stack (planned, post-MVP): HealthKit, OpenAI API
 - Architecture: local-first MVP (backend deferred to V2)
 
 ## What’s Complete
 
-_Last updated: 2026-02-18_
+_Last updated: **2026-02-19**_
 
-- Foundation scaffold is in place (`Activate/` app project structure).
-- Core SwiftData models are implemented (`Workout`, `Exercise`, `ExerciseTemplate`, `WorkoutSet`, `UserProfile`).
-- App shell is implemented (Today / History / Analytics / Settings).
-- Design system baseline is in place (dark-mode semantic theme).
-- Exercise seed system is implemented (211 bundled exercises + first-launch seeding).
-- Start Workout flow is implemented (blank/template entry + exercise picker with search/filter).
+- App scaffold is in place (`LiftKit/` SwiftUI app + TabView shell: Home / History / Exercises / Settings).
+- Core SwiftData models are implemented: `Workout`, `WorkoutSet`, `Exercise`, `WorkoutTemplate` (plus enums).
+- Exercise seed system is implemented (first-launch idempotent seeding from `DefaultExercises.json` = **91** exercises).
+- Exercise Library is implemented (search + category filter + detail view).
+- Start Workout flow is implemented:
+  - Home → full-screen `ActiveWorkoutView`
+  - Creates a `Workout` on appear
+  - Add Exercise via picker (inserts default **3** set rows per exercise)
+- Set logging UI is implemented in workout flow:
+  - Inline `weight/reps/RPE` entry with numeric constraints
+  - Set completion toggle with timestamp coherence
+  - Inline Add Set + swipe-to-delete
+  - Keyboard toolbar focus progression (`weight → reps → RPE → next set`)
 
 ## What’s Next
 
-- Set logging UI (weight/reps/RPE add/edit/delete)
-- Rest timer (preset + auto-start on set completion)
-- Finish workout + save flow (duration/volume summary + persistence)
-- Workout history list
-- Runtime build verification once full Xcode toolchain is active
+_Last updated: **2026-02-19**_
+
+- **BQ-008** Rest timer (auto-start on set completion; inline `-15s/+15s/Skip` controls; non-modal).
+- **BQ-009** Finish workout + save flow (facts-first summary; persist `completedAt` + duration).
+- **BQ-010** Replace History placeholder with real workout list + **BQ-011** workout detail.
+- Runtime build verification once full Xcode toolchain is active.
+
+(See: `BUILD-QUEUE.md` and `DEV-LOG.md`.)
 
 ## UI/UX Inspiration (Living)
 
@@ -44,4 +55,4 @@ Reference products and patterns to borrow/adapt (not copy):
 
 ---
 
-This README is intended to be updated by nightly planning with objective progress deltas.
+This README is updated by nightly planning and should stay in sync with the repo and `BUILD-QUEUE.md`.

@@ -29,7 +29,7 @@ final class WorkoutViewModel {
     func addExercise(_ exercise: Exercise, defaultSetCount: Int = 3, modelContext: ModelContext) {
         guard let workout else { return }
 
-        let nextExerciseOrder: Int = (workout.sets.map { $0.exerciseOrder }.max() ?? -1) + 1
+        let nextExerciseOrder = (workout.sets.map(\.exerciseOrder).max() ?? -1) + 1
 
         for idx in 0..<max(1, defaultSetCount) {
             let set = WorkoutSet(
@@ -41,6 +41,63 @@ final class WorkoutViewModel {
             modelContext.insert(set)
         }
 
+        persistChanges(modelContext: modelContext)
+    }
+
+    func addSet(to group: ExerciseGroup, modelContext: ModelContext) {
+        guard let workout else { return }
+
+        let nextSetOrder = (group.sets.map(\.setOrder).max() ?? -1) + 1
+
+        let newSet = WorkoutSet(
+            exercise: group.exercise,
+            workout: workout,
+            setOrder: nextSetOrder,
+            exerciseOrder: group.exerciseOrder
+        )
+
+        modelContext.insert(newSet)
+        persistChanges(modelContext: modelContext)
+    }
+
+    func deleteSets(at offsets: IndexSet, from group: ExerciseGroup, modelContext: ModelContext) {
+        guard let workout else { return }
+
+        let orderedSets = workout.sets
+            .filter { $0.exerciseOrder == group.exerciseOrder }
+            .sorted { $0.setOrder < $1.setOrder }
+
+        guard !orderedSets.isEmpty else { return }
+
+        for index in offsets {
+            guard orderedSets.indices.contains(index) else { continue }
+            modelContext.delete(orderedSets[index])
+        }
+
+        let remainingSets = orderedSets.enumerated()
+            .compactMap { offsets.contains($0.offset) ? nil : $0.element }
+
+        for (index, set) in remainingSets.enumerated() {
+            set.setOrder = index
+        }
+
+        persistChanges(modelContext: modelContext)
+    }
+
+    func toggleSetCompletion(_ set: WorkoutSet, isCompleted: Bool, modelContext: ModelContext) {
+        set.isCompleted = isCompleted
+        set.completedAt = isCompleted ? Date() : nil
+        persistChanges(modelContext: modelContext)
+    }
+
+    func copyValues(from source: WorkoutSet, to target: WorkoutSet, modelContext: ModelContext) {
+        target.weight = source.weight
+        target.reps = source.reps
+        target.rpe = source.rpe
+        persistChanges(modelContext: modelContext)
+    }
+
+    func persistChanges(modelContext: ModelContext) {
         do {
             try modelContext.save()
         } catch {
@@ -61,12 +118,10 @@ final class WorkoutViewModel {
         guard let workout else { return [] }
 
         let byExerciseOrder = Dictionary(grouping: workout.sets) { $0.exerciseOrder }
-
         let sortedOrders = byExerciseOrder.keys.sorted()
 
         return sortedOrders.compactMap { order in
             guard let sets = byExerciseOrder[order] else { return nil }
-            // All sets within an exerciseOrder should share the same exercise.
             guard let exercise = sets.compactMap({ $0.exercise }).first else { return nil }
 
             let sortedSets = sets.sorted { $0.setOrder < $1.setOrder }

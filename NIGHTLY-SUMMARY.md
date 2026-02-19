@@ -1,5 +1,15 @@
 # Nightly Summary — Activate
 
+## 2026-02-19 04:10 (America/Toronto)
+- Completed **BQ-009 Finish workout + save flow**.
+- Added explicit **Finish Workout** action in `ActiveWorkoutView` with zero-completed-set confirmation guardrail.
+- Added `WorkoutViewModel.finishWorkout(...)` to persist `completedAt` + `durationSeconds` and reconcile set completion timestamps before save.
+- Added new `WorkoutSummaryView` facts-first post-save modal (duration, completed sets, logged volume, started/finished times).
+- Updated `BUILD-QUEUE.md` (BQ-009 moved to DONE; BQ-010 now NEXT).
+- Updated `DEV-LOG.md`, `DEV-PLAN.md`, and `README.md` to reflect implementation state and current next steps.
+- Regenerated `LiftKit.xcodeproj` with `xcodegen generate`.
+- Runtime build verification remains blocked: `xcodebuild` unavailable with current `xcode-select` path.
+
 ## 2026-02-19 03:10 (America/Toronto)
 - Completed **BQ-008 Rest timer capsule** attached to active workout logging flow.
 - Updated `WorkoutViewModel` to auto-start rest timing when a set is marked complete.

@@ -7,6 +7,8 @@ struct ActiveWorkoutView: View {
 
     @State private var viewModel = WorkoutViewModel()
     @State private var isShowingExercisePicker = false
+    @State private var isShowingEmptyWorkoutConfirmation = false
+    @State private var workoutSummary: WorkoutViewModel.WorkoutSummary?
     @FocusState private var focusedField: WorkoutSetInputField?
 
     var body: some View {
@@ -68,6 +70,16 @@ struct ActiveWorkoutView: View {
                         }
                     }
                 }
+
+                Section {
+                    Button {
+                        handleFinishWorkoutTapped()
+                    } label: {
+                        Text("Finish Workout")
+                            .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
             }
             .navigationTitle("Workout")
             .navigationBarTitleDisplayMode(.inline)
@@ -108,6 +120,12 @@ struct ActiveWorkoutView: View {
                 }
                 .presentationDetents([.medium, .large])
             }
+            .sheet(item: $workoutSummary) { summary in
+                WorkoutSummaryView(summary: summary) {
+                    workoutSummary = nil
+                    dismiss()
+                }
+            }
             .alert(
                 "Couldn't start workout",
                 isPresented: Binding(
@@ -122,6 +140,14 @@ struct ActiveWorkoutView: View {
                 }
             } message: {
                 Text(viewModel.startErrorMessage ?? "")
+            }
+            .alert("Finish workout with no completed sets?", isPresented: $isShowingEmptyWorkoutConfirmation) {
+                Button("Cancel", role: .cancel) {}
+                Button("Finish Anyway", role: .destructive) {
+                    completeWorkout(forceIfNoCompletedSets: true)
+                }
+            } message: {
+                Text("You haven't marked any sets complete. Save this workout anyway?")
             }
             .onAppear {
                 viewModel.startWorkoutIfNeeded(modelContext: modelContext)
@@ -142,7 +168,8 @@ struct ActiveWorkoutView: View {
                     .foregroundStyle(.secondary)
 
                 TimelineView(.periodic(from: workout.startedAt, by: 1)) { context in
-                    let elapsed = Int(context.date.timeIntervalSince(workout.startedAt))
+                    let endDate = workout.completedAt ?? context.date
+                    let elapsed = max(0, Int(endDate.timeIntervalSince(workout.startedAt)))
                     Text("Elapsed: \(formatElapsed(elapsed))")
                         .font(.headline)
                         .monospacedDigit()
@@ -191,6 +218,22 @@ struct ActiveWorkoutView: View {
             }
             .padding(.vertical, 4)
         }
+    }
+
+    private func handleFinishWorkoutTapped() {
+        if viewModel.completedSetCount == 0 {
+            isShowingEmptyWorkoutConfirmation = true
+            return
+        }
+
+        completeWorkout(forceIfNoCompletedSets: false)
+    }
+
+    private func completeWorkout(forceIfNoCompletedSets: Bool) {
+        workoutSummary = viewModel.finishWorkout(
+            modelContext: modelContext,
+            forceIfNoCompletedSets: forceIfNoCompletedSets
+        )
     }
 
     private func focusNextField() {

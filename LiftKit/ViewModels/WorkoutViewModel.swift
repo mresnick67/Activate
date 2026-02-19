@@ -19,6 +19,10 @@ final class WorkoutViewModel {
         restTimeRemainingSeconds != nil
     }
 
+    var completedSetCount: Int {
+        workout?.sets.filter(\.isCompleted).count ?? 0
+    }
+
     deinit {
         restTimerTask?.cancel()
     }
@@ -117,6 +121,28 @@ final class WorkoutViewModel {
         persistChanges(modelContext: modelContext)
     }
 
+    func finishWorkout(modelContext: ModelContext, forceIfNoCompletedSets: Bool = false) -> WorkoutSummary? {
+        guard let workout else { return nil }
+
+        if completedSetCount == 0 && !forceIfNoCompletedSets {
+            return nil
+        }
+
+        let completionDate = Date()
+        reconcileSetCompletionTimestamps(referenceDate: completionDate)
+
+        workout.completedAt = completionDate
+        workout.durationSeconds = max(0, Int(completionDate.timeIntervalSince(workout.startedAt)))
+
+        do {
+            try modelContext.save()
+            skipRestTimer()
+            return WorkoutSummary(workout: workout)
+        } catch {
+            return nil
+        }
+    }
+
     func startRestTimer(durationSeconds: Int = 90, sourceSetID: UUID? = nil) {
         let clampedDuration = max(5, durationSeconds)
         restTimerDurationSeconds = clampedDuration
@@ -179,6 +205,29 @@ final class WorkoutViewModel {
         let sets: [WorkoutSet]
     }
 
+    struct WorkoutSummary: Identifiable {
+        let id: UUID
+        let startedAt: Date
+        let completedAt: Date
+        let durationSeconds: Int
+        let completedSetCount: Int
+        let loggedVolumePounds: Double
+
+        init(workout: Workout) {
+            self.id = workout.id
+            self.startedAt = workout.startedAt
+            self.completedAt = workout.completedAt ?? Date()
+            self.durationSeconds = workout.durationSeconds ?? max(0, Int(self.completedAt.timeIntervalSince(workout.startedAt)))
+
+            let completedSets = workout.sets.filter(\.isCompleted)
+            self.completedSetCount = completedSets.count
+            self.loggedVolumePounds = completedSets.reduce(0) { partialResult, set in
+                guard let weight = set.weight, let reps = set.reps, reps > 0 else { return partialResult }
+                return partialResult + (weight * Double(reps))
+            }
+        }
+    }
+
     func groupedSets() -> [ExerciseGroup] {
         guard let workout else { return [] }
 
@@ -191,6 +240,18 @@ final class WorkoutViewModel {
 
             let sortedSets = sets.sorted { $0.setOrder < $1.setOrder }
             return ExerciseGroup(exercise: exercise, exerciseOrder: order, sets: sortedSets)
+        }
+    }
+
+    private func reconcileSetCompletionTimestamps(referenceDate: Date) {
+        guard let workout else { return }
+
+        for set in workout.sets {
+            if set.isCompleted && set.completedAt == nil {
+                set.completedAt = referenceDate
+            } else if !set.isCompleted {
+                set.completedAt = nil
+            }
         }
     }
 }

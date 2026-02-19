@@ -28,15 +28,19 @@ _Last updated: **2026-02-19**_
   - Auto-starts on set completion
   - Non-modal countdown attached to workout screen
   - Inline `-15s / +15s / Skip` controls
+- Finish workout flow is implemented:
+  - Explicit **Finish Workout** action in `ActiveWorkoutView`
+  - Empty-workout guardrail confirmation before saving zero-completion sessions
+  - Persists `Workout.completedAt` + `Workout.durationSeconds`
+  - Shows facts-first summary (`Duration`, `Completed sets`, `Logged volume`, timing)
 
 ## What’s Next
 
 _Last updated: **2026-02-19**_
 
-- **BQ-009** Finish workout + save flow (facts-first summary; persist `completedAt` + duration).
 - **BQ-010** Replace History placeholder with real workout list.
 - **BQ-011** Workout detail (read-only breakdown per session).
-- Runtime build verification once full Xcode toolchain is active.
+- Runtime build verification once full Xcode toolchain is active (`xcode-select` currently points to CommandLineTools).
 
 (See: `BUILD-QUEUE.md` and `DEV-LOG.md`.)
 

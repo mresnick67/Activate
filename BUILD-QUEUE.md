@@ -1,6 +1,6 @@
 # Activate — Build Queue
 
-Last updated: **2026-02-19 03:10** (America/Toronto)
+Last updated: **2026-02-19 04:24** (America/Toronto)
 
 Status: **DONE / IN-PROGRESS / NEXT / BLOCKED / PARKED**
 
@@ -28,26 +28,24 @@ Evidence basis: current repo contents under `LiftKit/` + recent git history.
   - Auto-starts when a set is marked complete in `WorkoutViewModel.toggleSetCompletion`.
   - Added inline rest capsule in `ActiveWorkoutView` with visible countdown + `-15s / +15s / Skip` controls.
   - Timer state is safely managed in view model (`restTimeRemainingSeconds`) and cleared on skip/dismiss.
+- **DONE (BQ-009)** Finish workout + save flow (facts first)
+  - Added finish action in `ActiveWorkoutView` with empty-workout guardrail confirmation.
+  - Added `WorkoutViewModel.finishWorkout(...)` to persist `completedAt` + `durationSeconds`.
+  - Enforced set completion timestamp coherence at finish time.
+  - Added `WorkoutSummaryView` facts-first modal (duration, completed sets, logged volume, timing).
 
 ---
 
-## Next (focus: workout completion + history trust)
-
-### **NEXT (BQ-009)** Finish workout + save flow (facts first)
-**UX:** Summary must present verifiable facts (duration, sets completed, volume) before any AI interpretation.
-
-**Tech notes**
-- Set `Workout.completedAt` and `Workout.durationSeconds`
-- Ensure sets are saved and completion timestamps are consistent
-
----
+## Next (focus: history trust)
 
 ### **NEXT (BQ-010)** History list (replace placeholder)
 - Fetch workouts (completed + in-progress handling)
 - Show basic row summary (date, duration, set count / volume)
+- Add explicit visual distinction for completed vs in-progress sessions
 
 ### **NEXT (BQ-011)** Workout detail (read-only)
 - Drill-in from history to view exercises/sets logged
+- Preserve exercise order and set completion state in a trustworthy read-only layout
 
 ---
 

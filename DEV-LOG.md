@@ -4,6 +4,38 @@ Keep entries factual and anchored to commits/files.
 
 ---
 
+## 2026-02-19 — Nightly Build Run (04:10 ET)
+
+**Phase:** BQ-009 Finish workout + save flow
+
+**What changed**
+- Added finish-workout persistence path in `LiftKit/ViewModels/WorkoutViewModel.swift`:
+  - new `finishWorkout(...)` API,
+  - persistence of `Workout.completedAt` + `Workout.durationSeconds`,
+  - set completion timestamp reconciliation to enforce `isCompleted`/`completedAt` coherence at save time,
+  - `WorkoutSummary` facts object (duration, completed set count, logged volume).
+- Updated `LiftKit/Views/Workout/ActiveWorkoutView.swift`:
+  - added explicit **Finish Workout** action,
+  - added empty-workout guardrail confirmation (`Finish workout with no completed sets?`),
+  - wired facts-first completion sheet after successful save.
+- Added `LiftKit/Views/Workout/WorkoutSummaryView.swift`:
+  - post-save factual summary (Duration, Completed sets, Logged volume, Started/Finished timestamps),
+  - no interpretive coaching copy.
+- Regenerated project with `xcodegen generate` to include new summary view source.
+
+**Queue update**
+- Marked **BQ-009** DONE in `BUILD-QUEUE.md`.
+- Promoted **BQ-010** as top NEXT ticket.
+
+**Verification**
+- `xcodegen generate` completed successfully ✅
+- Source-level validation complete for finish flow + summary wiring ✅
+- Runtime `xcodebuild` verification still blocked on host Xcode selection (`CommandLineTools` active) ⚠️
+
+**Next up**
+- BQ-010 History list (replace placeholder)
+- BQ-011 Workout detail (read-only)
+
 ## 2026-02-19 — Nightly Build Run (03:10 ET)
 
 **Phase:** BQ-008 Rest timer capsule

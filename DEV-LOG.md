@@ -4,6 +4,32 @@ Keep entries factual and anchored to commits/files.
 
 ---
 
+## 2026-02-20 — Nightly Build Run (03:10 ET)
+
+**Phase:** BQ-011 Workout detail (read-only, provenance + disclosure)
+
+**What changed**
+- Added `LiftKit/Views/History/HistoryWorkoutDetailView.swift` as the read-only drill-in screen for logged workouts.
+- Updated `LiftKit/Views/History/HistoryListView.swift` so both **Completed** and **In Progress** rows navigate to workout detail.
+- Implemented read-only replay of logged exercise/set data using persisted ordering (`exerciseOrder` then `setOrder`) and stored completion state.
+- Added top facts/timing summary framing in detail view (duration, completed sets, logged volume, started/finished timing).
+- Added explicit disclosure/provenance block in detail view:
+  - `Source` = on-device SwiftData log
+  - `Last updated` derived from latest available workout/set event timestamp
+  - `Volume formula: Σ(weight × reps) for completed loaded sets`
+- Regenerated `LiftKit.xcodeproj` via `xcodegen generate` to include the new detail view source file.
+- Updated planning/docs to match implementation truth:
+  - `BUILD-QUEUE.md` → marked **BQ-011** DONE, no active NEXT ticket.
+  - `README.md` → moved workout detail into “What’s Complete”, updated “What’s Next”.
+
+**Verification**
+- `xcodegen generate` completed successfully ✅
+- Source-level verification complete for History → Detail navigation and read-only rendering path ✅
+- No runtime `xcodebuild` verification performed (per nightly run constraints) ✅
+
+**Next up**
+- Runtime build verification once host Xcode toolchain is fully available.
+
 ## 2026-02-20 — Nightly Build Run (02:10 ET)
 
 **Phase:** BQ-010 History list (trust-first scanability)

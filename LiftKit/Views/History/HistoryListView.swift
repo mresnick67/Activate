@@ -20,7 +20,11 @@ struct HistoryListView: View {
                         emptySectionRow("No completed workouts yet")
                     } else {
                         ForEach(completedWorkouts) { workout in
-                            HistoryWorkoutRow(workout: workout, status: .completed)
+                            NavigationLink {
+                                HistoryWorkoutDetailView(workout: workout)
+                            } label: {
+                                HistoryWorkoutRow(workout: workout, status: .completed)
+                            }
                         }
                     }
                 }
@@ -30,7 +34,11 @@ struct HistoryListView: View {
                         emptySectionRow("No in-progress workouts")
                     } else {
                         ForEach(inProgressWorkouts) { workout in
-                            HistoryWorkoutRow(workout: workout, status: .inProgress)
+                            NavigationLink {
+                                HistoryWorkoutDetailView(workout: workout)
+                            } label: {
+                                HistoryWorkoutRow(workout: workout, status: .inProgress)
+                            }
                         }
                     }
                 }

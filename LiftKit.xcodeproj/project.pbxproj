@@ -24,6 +24,7 @@
 		9DC3633D69A1534485ECAE34 /* DefaultExercises.json in Resources */ = {isa = PBXBuildFile; fileRef = DECB433EF8E39B044EDF747A /* DefaultExercises.json */; };
 		A6B69A34DB5273CE1B854019 /* ExerciseSeedService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06E676C2425F141A49161D44 /* ExerciseSeedService.swift */; };
 		A714959B75338072F0555353 /* WorkoutTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BCB92139EE6B89E12A5BF5 /* WorkoutTemplate.swift */; };
+		B1C6CD006AFDF81821B7B34F /* HistoryWorkoutDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040DA695C845F5A2CF08AD58 /* HistoryWorkoutDetailView.swift */; };
 		C1027306590B4DD3230045A9 /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF2C577679200E06A8888F0 /* Exercise.swift */; };
 		C1DD233684E3502E39452DF7 /* SettingsPlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4961827E96EA06C78177CC48 /* SettingsPlaceholderView.swift */; };
 		D9C502693B5D3D8010903BEC /* WorkoutSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 324951462E242669F6C8D797 /* WorkoutSet.swift */; };
@@ -33,6 +34,7 @@
 
 /* Begin PBXFileReference section */
 		03D4DE5893919FEB0D298919 /* WorkoutSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSummaryView.swift; sourceTree = "<group>"; };
+		040DA695C845F5A2CF08AD58 /* HistoryWorkoutDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryWorkoutDetailView.swift; sourceTree = "<group>"; };
 		06E676C2425F141A49161D44 /* ExerciseSeedService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseSeedService.swift; sourceTree = "<group>"; };
 		2438FD301D9F677C633278FA /* .gitkeep */ = {isa = PBXFileReference; path = .gitkeep; sourceTree = "<group>"; };
 		2CF2C577679200E06A8888F0 /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				84ECD720756C8A12D9FEEF2A /* HistoryListView.swift */,
+				040DA695C845F5A2CF08AD58 /* HistoryWorkoutDetailView.swift */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				2C0898905EB593572252443A /* ExerciseRowView.swift in Sources */,
 				A6B69A34DB5273CE1B854019 /* ExerciseSeedService.swift in Sources */,
 				3AF69C722BBED3CD35070341 /* HistoryListView.swift in Sources */,
+				B1C6CD006AFDF81821B7B34F /* HistoryWorkoutDetailView.swift in Sources */,
 				5FBF6497BD041C8E5A3A0BDC /* HomeView.swift in Sources */,
 				9D4832A1E232BA4E531A04D1 /* LiftKitApp.swift in Sources */,
 				C1DD233684E3502E39452DF7 /* SettingsPlaceholderView.swift in Sources */,

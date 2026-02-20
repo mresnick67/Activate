@@ -38,12 +38,17 @@ _Last updated: **2026-02-20**_
   - Row metrics in fixed order: date/time, duration, completed sets, logged volume
   - Explicit status chips + subtle in-progress visual distinction
   - Monospaced/aligned numeric metrics for fast scanning
+- Workout detail is implemented (read-only provenance + disclosure):
+  - Drill-in from History rows to inspect logged exercises/sets
+  - Preserves logged exercise + set order and completion state from saved workout data
+  - Reuses facts-first summary framing (duration, completed sets, logged volume)
+  - Includes provenance disclosure (`Source`, `Last updated`, and explicit volume formula)
 
 ## What’s Next
 
 _Last updated: **2026-02-20**_
 
-- **BQ-011** Workout detail (read-only; preserves exercise/set order + completion state; provenance + volume calculation disclosure).
+- No active **NEXT (BQ-...)** ticket is currently queued in `BUILD-QUEUE.md`.
 - Runtime build verification once full Xcode toolchain is active (`xcode-select` currently points to CommandLineTools).
 
 (See: `BUILD-QUEUE.md` and `DEV-LOG.md`.)

@@ -4,6 +4,43 @@ Keep entries factual and anchored to commits/files.
 
 ---
 
+## 2026-02-20 — Nightly Build Run (02:10 ET)
+
+**Phase:** BQ-010 History list (trust-first scanability)
+
+**What changed**
+- Replaced `LiftKit/Views/History/HistoryListView.swift` placeholder with a SwiftData-backed list (`@Query`) for workouts.
+- Added two sections in History: **Completed** and **In Progress**.
+- Implemented scan-friendly history rows with fixed metric order:
+  - date/time,
+  - duration,
+  - completed set count,
+  - logged volume.
+- Added explicit status chips (`Completed` / `In Progress`) and subtle in-progress tint for immediate state distinction.
+- Applied scanability ergonomics: monospaced numeric values, consistent metric alignment, and padded row hit area.
+- Updated planning artifacts to reflect completion:
+  - `BUILD-QUEUE.md` → marked **BQ-010** DONE, promoted **BQ-011** as top NEXT.
+  - `README.md` → moved History list into “What’s Complete”, updated “What’s Next”.
+
+**Verification**
+- Source-level verification complete for history data flow and row metrics (`duration`, completed set count, volume) ✅
+- No runtime `xcodebuild` verification performed (per nightly run constraints) ✅
+
+**Next up**
+- BQ-011 Workout detail (read-only, provenance + disclosure)
+
+## 2026-02-20 — Nightly planning (01:30 ET)
+
+**What changed (planning artifacts)**
+- Refreshed planning timestamps and synced README “What’s Complete / What’s Next” to match `BUILD-QUEUE.md` + this dev log.
+- Incorporated the latest `UIUX-INSPIRATION.md` guidance into BQ-010/011 acceptance criteria:
+  - BQ-010 History list: Completed + In Progress sections, fixed row spec (date/time • duration • completed sets • volume), explicit status chip, and a scanability ergonomics pass.
+  - BQ-011 Workout detail: read-only replay with provenance + volume-formula disclosure.
+
+**Verification**
+- No runtime build verification performed in this run.
+- `xcodebuild` remains blocked on host Xcode selection (`xcode-select` currently points to CommandLineTools).
+
 ## 2026-02-19 — Nightly Build Run (04:10 ET)
 
 **Phase:** BQ-009 Finish workout + save flow

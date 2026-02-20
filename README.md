@@ -9,7 +9,7 @@ Swift-native iOS workout tracker focused on reliable logging, data portability, 
 
 ## What’s Complete
 
-_Last updated: **2026-02-19**_
+_Last updated: **2026-02-20**_
 
 - App scaffold is in place (`LiftKit/` SwiftUI app + TabView shell: Home / History / Exercises / Settings).
 - Core SwiftData models are implemented: `Workout`, `WorkoutSet`, `Exercise`, `WorkoutTemplate` (plus enums).
@@ -33,13 +33,17 @@ _Last updated: **2026-02-19**_
   - Empty-workout guardrail confirmation before saving zero-completion sessions
   - Persists `Workout.completedAt` + `Workout.durationSeconds`
   - Shows facts-first summary (`Duration`, `Completed sets`, `Logged volume`, timing)
+- History list is implemented (trust-first scanability):
+  - SwiftData-backed **Completed** and **In Progress** sections
+  - Row metrics in fixed order: date/time, duration, completed sets, logged volume
+  - Explicit status chips + subtle in-progress visual distinction
+  - Monospaced/aligned numeric metrics for fast scanning
 
 ## What’s Next
 
-_Last updated: **2026-02-19**_
+_Last updated: **2026-02-20**_
 
-- **BQ-010** Replace History placeholder with real workout list.
-- **BQ-011** Workout detail (read-only breakdown per session).
+- **BQ-011** Workout detail (read-only; preserves exercise/set order + completion state; provenance + volume calculation disclosure).
 - Runtime build verification once full Xcode toolchain is active (`xcode-select` currently points to CommandLineTools).
 
 (See: `BUILD-QUEUE.md` and `DEV-LOG.md`.)

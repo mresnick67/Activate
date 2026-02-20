@@ -1,6 +1,6 @@
 # Activate — Build Queue
 
-Last updated: **2026-02-19 04:24** (America/Toronto)
+Last updated: **2026-02-20 02:10** (America/Toronto)
 
 Status: **DONE / IN-PROGRESS / NEXT / BLOCKED / PARKED**
 
@@ -38,14 +38,17 @@ Evidence basis: current repo contents under `LiftKit/` + recent git history.
 
 ## Next (focus: history trust)
 
-### **NEXT (BQ-010)** History list (replace placeholder)
-- Fetch workouts (completed + in-progress handling)
-- Show basic row summary (date, duration, set count / volume)
-- Add explicit visual distinction for completed vs in-progress sessions
+### **DONE (BQ-010)** History list (trust-first scanability)
+- Added SwiftData-backed workout fetch in `HistoryListView` with dedicated **Completed** + **In Progress** sections.
+- Implemented trust-first row layout in fixed metric order: date/time, duration, completed set count, logged volume.
+- Added explicit status chips (`Completed` / `In Progress`) + subtle in-progress row tint for fast visual distinction.
+- Applied scanability ergonomics: monospaced numeric metrics, consistent alignment, and padded row tap targets.
 
-### **NEXT (BQ-011)** Workout detail (read-only)
-- Drill-in from history to view exercises/sets logged
-- Preserve exercise order and set completion state in a trustworthy read-only layout
+### **NEXT (BQ-011)** Workout detail (read-only, provenance + disclosure)
+- Drill-in from History to view exercises/sets logged (read-only)
+- Preserve exercise order + set completion state exactly as logged
+- Reuse finish-summary framing at top (duration, completed sets, logged volume)
+- Footer disclosure: `Source`, `Last updated`, and `Volume formula: Σ(weight × reps) for completed loaded sets`
 
 ---
 

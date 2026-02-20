@@ -1,10 +1,13 @@
 import SwiftUI
 import SwiftData
 
-struct ExerciseLibraryView: View {
-    @Query(sort: \Exercise.name) private var exercises: [Exercise]
+struct ExercisePickerView: View {
+    @Environment(\.dismiss) private var dismiss
 
+    @Query(sort: \Exercise.name) private var exercises: [Exercise]
     @State private var viewModel = ExerciseLibraryViewModel()
+
+    let onSelect: (Exercise) -> Void
 
     var body: some View {
         NavigationStack {
@@ -22,19 +25,27 @@ struct ExerciseLibraryView: View {
                     ForEach(grouped, id: \.category) { group in
                         Section(group.category.displayName) {
                             ForEach(group.exercises) { exercise in
-                                NavigationLink {
-                                    ExerciseDetailView(exercise: exercise)
+                                Button {
+                                    onSelect(exercise)
+                                    dismiss()
                                 } label: {
                                     ExerciseRowView(exercise: exercise)
                                 }
+                                .buttonStyle(.plain)
                             }
                         }
                     }
                 }
             }
-            .navigationTitle("Exercises")
-            .searchable(text: $viewModel.searchText, prompt: "Search exercises")
+            .navigationTitle("Pick Exercise")
+            .searchable(text: $viewModel.searchText, prompt: "Search")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+
                 ToolbarItem(placement: .topBarTrailing) {
                     Menu {
                         Picker("Category", selection: $viewModel.selectedCategory) {
@@ -47,15 +58,6 @@ struct ExerciseLibraryView: View {
                     } label: {
                         Label("Filter", systemImage: "line.3.horizontal.decrease.circle")
                     }
-                }
-
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        // Placeholder for BQ-016 (Add Custom Exercise)
-                    } label: {
-                        Image(systemName: "plus")
-                    }
-                    .accessibilityLabel("Add Exercise")
                 }
             }
         }
@@ -70,9 +72,8 @@ struct ExerciseLibraryView: View {
     )
 
     container.mainContext.insert(Exercise(name: "Bench Press", category: .chest, equipment: .barbell, isCustom: false))
-    container.mainContext.insert(Exercise(name: "Incline Dumbbell Press", category: .chest, equipment: .dumbbell, isCustom: false))
     container.mainContext.insert(Exercise(name: "Pull-Up", category: .back, equipment: .bodyweight, isCustom: false))
 
-    return ExerciseLibraryView()
+    return ExercisePickerView { _ in }
         .modelContainer(container)
 }

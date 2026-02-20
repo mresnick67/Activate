@@ -1,6 +1,9 @@
 import SwiftUI
+import SwiftData
 
 struct ContentView: View {
+    @Environment(\.modelContext) private var modelContext
+
     var body: some View {
         TabView {
             HomeView()
@@ -23,9 +26,13 @@ struct ContentView: View {
                     Label("Settings", systemImage: "gearshape")
                 }
         }
+        .task {
+            ExerciseSeedService.seedIfNeeded(modelContext: modelContext)
+        }
     }
 }
 
 #Preview {
     ContentView()
+        .modelContainer(for: [Exercise.self, Workout.self, WorkoutSet.self, WorkoutTemplate.self], inMemory: true)
 }
